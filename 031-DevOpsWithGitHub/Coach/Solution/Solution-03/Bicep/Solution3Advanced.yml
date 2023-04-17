@@ -1,8 +1,13 @@
 on:
-  push
-
-env:
-  targetEnv: Dev
+  workflow_dispatch:
+   inputs:
+    appenv:
+      type: choice
+      description: Choose the target environment
+      options: 
+        - dev
+        - test
+        - prod
 
 name: Azure ARM
 jobs:
@@ -22,5 +27,6 @@ jobs:
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-        template: ./Bicep-Templates/main.bicep
-        parameters: webAppName=WTHApp-${{ env.targetEnv }}
+        resourceGroupName: ${{ secrets.AZURE_RG }}
+        template: ./ARM-Templates/container-webapp-template.json
+        parameters: webAppName=WTHApp-${{ github.event.inputs.appenv }}

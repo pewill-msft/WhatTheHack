@@ -22,5 +22,6 @@ jobs:
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-        template: ./Bicep-Templates/main.bicep
+        resourceGroupName: ${{ secrets.AZURE_RG }}
+        template: ./ARM-Templates/container-webapp-template.json
         parameters: webAppName=WTHApp-${{ env.targetEnv }}
