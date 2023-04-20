@@ -17,11 +17,11 @@ The hackathon uses GitHub Actions to create a complete CI/CD workflow for a web 
 
 The following image illustrates the conceptual architecture.
 
-![Conceptual architecture](student/img/conceptual-architecture.png)
+![Conceptual architecture](./Student/img/conceptual-architecture.png)
 
 Once this hackathon is completed you should have an Architecture that looks something like the diagram below.
 
-![Conceptual architecture](student/img/architecture.png)
+![Conceptual architecture](./Student/img/architecture.png)
 
 ## Challenges
  - [Challenge 0](./Student/challenge00.md) - Setup and Introduction
