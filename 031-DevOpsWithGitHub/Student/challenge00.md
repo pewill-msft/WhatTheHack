@@ -8,6 +8,10 @@
 
 DevOps is a broad concept that encompasses people, processes, and tools. The tools you use fall into a number of categories, including version control, Continuous Integration and Continuous Deployment (CI/CD), Infrastructure-as-Code, and security scanning. Within each category, you have many choices when it comes to implementation. In this challenge, you will set up your local machine and cloud environment with the minimum requirements, but the lessons that follow will translate to any DevOps practice, regardless of tooling. 
 
+The following image illustrates the steps in this challenge
+
+  ![Challenge overview](img/challenge-0-overview.png)
+
 ### Description
 
 1. Begin by creating a GitHub account and repository that you can use for this hack. You may use an existing account if you have one already.

@@ -14,6 +14,10 @@ Review the following articles:
 - [Create Azure Resource Manager template](https://docs.microsoft.com/en-us/azure/azure-resource-manager/how-to-create-template)
 
 
+The following image illustrates the areas covered in this challenge
+
+  ![Challenge overview](img/challenge-3-overview.png)
+
 ### Challenge
 
 We will use GitHub Actions to automate the deployment of our Azure infrastructure. For our application, we will deploy 3 environments: `dev`, `test` and `prod`. Each environment will have its own Web App, however all of our environments will share a single Resource Group, App Service Plan, Application Insights instance, and Azure Container Registry. NOTE: in real deployments, you will likely not share all of these resources.

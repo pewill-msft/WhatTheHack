@@ -14,6 +14,10 @@ Review the following articles:
 - [About continuous integration](https://docs.github.com/en/actions/building-and-testing-code-with-continuous-integration/about-continuous-integration)
 - [Setting up continuous integration using workflow templates](https://docs.github.com/en/actions/building-and-testing-code-with-continuous-integration/setting-up-continuous-integration-using-github-actions)
 
+The following image illustrates the areas covered in this challenge
+
+  ![Challenge overview](img/challenge-4-overview.png)
+
 ### Challenge
 
 In this challenge, you will build and test the .NET Core application.

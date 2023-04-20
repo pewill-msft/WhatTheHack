@@ -18,6 +18,10 @@ Now that we have a basic understanding of version control and Git, lets get some
 
 3. Finally, commit the files to your GitHub repository using your preferred Git client.
 
+The following image illustrates the areas covered in this challenge
+
+  ![Challenge overview](img/challenge-2-overview.png)
+
 ### Success Criteria
 
 - Your repo is cloned to your local machine and sync'd with GitHub.com

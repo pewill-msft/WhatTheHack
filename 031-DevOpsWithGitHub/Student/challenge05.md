@@ -16,6 +16,11 @@ Containers are a great way to package and deploy applications consistently acros
 
 3. `docker push` - once you have created your docker image, you need to store it in the container registry, which is our secured and centralized location to store docker images. Docker supports a push command that copies the docker image to the registry in the proper repository. A repository is a logical way of grouping and versioning docker images.
 
+The following image illustrates the areas covered in this challenge
+
+  ![Challenge overview](img/challenge-5-overview.png)
+
+
 ### Challenge
 
 In this challenge, you will build and push a docker image to ACR:

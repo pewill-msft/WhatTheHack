@@ -12,6 +12,17 @@ This DevOps with GitHub hack will help you learn:
 1. How to use GitHub Actions for CI & CD
 1. Monitoring apps with Application Insights
 
+## High level architecture
+The hackathon uses GitHub Actions to create a complete CI/CD workflow for a web application deployed as a container in Azure App Service.
+
+The following image illustrates the conceptual architecture.
+
+![Conceptual architecture](student/img/conceptual-architecture.png)
+
+Once this hackathon is completed you should have an Architecture that looks something like the diagram below.
+
+![Conceptual architecture](student/img/architecture.png)
+
 ## Challenges
  - [Challenge 0](./Student/challenge00.md) - Setup and Introduction
  - [Challenge 1](./Student/challenge01.md) - Track your work with GitHub Project Boards
