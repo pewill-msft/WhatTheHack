@@ -12,6 +12,10 @@ With GitHub, we can solve these challenges using a practice called branching. So
 
 In this challenge, you will practice this flow. Additionally, GitHub offers a feature for explicitly protecting against changes directly to the main branch. These are called branch protection rules, and you will start by implementing one.
 
+The following image illustrates the areas covered in this challenge
+
+  ![Challenge overview](img/challenge-7-overview.png)
+
 ### Challenge
 
 1. Create a branch protection rule which prevents developers from commiting changes to the main branch in the repository.

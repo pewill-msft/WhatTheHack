@@ -10,6 +10,10 @@ In DevOps after we automate our build process, we want to automate our release p
 
 - [What is Continuous Delivery?](https://docs.microsoft.com/en-us/azure/devops/learn/what-is-continuous-delivery)
 
+The following image illustrates the areas covered in this challenge
+
+  ![Challenge overview](img/challenge-6-overview.png)
+
 ### Challenge
 
 In this challenge, we will use GitHub Actions to deploy our container image to the dev environment. 

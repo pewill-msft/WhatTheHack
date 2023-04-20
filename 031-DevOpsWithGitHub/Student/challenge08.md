@@ -21,6 +21,10 @@ In this challenge we will look at some of the telemetry that has already been co
 
 3. Implement an outside in availability test for the homepage of your site ([hint](https://docs.microsoft.com/en-us/azure/azure-monitor/app/monitor-web-app-availability))
 
+The following image illustrates the areas covered in this challenge
+
+  ![Challenge overview](img/challenge-8-overview.png)
+
 ### Success Criteria
 
 1. You should understand the importance of monitoring and some of the basic features offered by Application Insights.
