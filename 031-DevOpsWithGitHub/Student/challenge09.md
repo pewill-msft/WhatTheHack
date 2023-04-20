@@ -12,6 +12,10 @@ One good DevOps practice is to enable protections against code-level vulnerabili
 
 In addition to these manual processes, GitHub also provides automated tools for scanning code for common errors. In this challenge, you will utilize the built in Dependabot which provides alerts if your repository contains libraries, packages, or external dependencies with known vulnerabilities. You will also set up a workflow with CodeQL which can scan your source code for common coding errors or basic security flaws.
 
+The following image illustrates the areas covered in this challenge
+
+  ![Challenge overview](img/challenge-9-overview.png)
+
 ### Challenge
 
 In this challenge, you will improve the security of your repository using some of GitHub's built-in tools. 
