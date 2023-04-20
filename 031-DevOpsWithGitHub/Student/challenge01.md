@@ -17,6 +17,10 @@ To help you with Agile project management, there is [GitHub project boards](http
 
 Review the following introduction to GitHub project boards: [GitHub project boards](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects).
 
+The following image illustrates the areas covered in this challenge
+
+  ![Challenge overview](img/challenge-1-overview.png)
+
 ### Challenge
 
 1. Add collaborators from your team to your repo. 
