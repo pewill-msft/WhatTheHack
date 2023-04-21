@@ -63,3 +63,10 @@ Regardless of the option you choose, you'll have to consider:
 - Will Fox
 - Andy Huang
 - Julia Nathan
+
+Changes in this fork
+- Peter Williams
+- Jimmy karlsson
+- Miro Masat
+- Morten Pedersen
+- Peter Liljenroth
