@@ -22,11 +22,11 @@ The following image illustrates the areas covered in this challenge
 
 In this challenge, you will build and test the .NET Core application.
 
-1. Create a new `.NET Core` workflow from the GitHub Actions marketplace. In your repo, click on Actions in the top menu > New Workflow (button) > scroll down to the 'Continuous integration workflows' section and setup the '.NET Core' action.
+1. Create a new `.NET` workflow from the GitHub Actions marketplace. In your repo, click on Actions in the top menu > New Workflow (button) > scroll down to the 'Continuous integration workflows' section and setup the '.NET Core' action.
 
 2. Review the layout of the workflow. There is a single job (named 'build') with multiple steps (restore, build, test).
 
-3. In your workflow, under the "Setup .NET Core" step, change the .NET version to `2.2` to match the version defined by the application.
+3. In your workflow, under the "Setup .NET" step, verify that the .NET version is set to `6.0.x` to match the version defined by the application.
 
 4. Configure path filters to *only* trigger this workflow for changes in the `/Application` folder.
 
@@ -49,7 +49,7 @@ At this point, any changes pushed to the `/Application` folder automatically tri
 ### Learning Resources
 
 - [Introduction to GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/introduction-to-github-actions)
-- [.NET Core Action to build and test](https://github.com/actions/starter-workflows/blob/dacfd0a22a5a696b74a41f0b49c98ff41ef88427/ci/dotnet-core.yml)
+- [.NET Action to build and test](https://github.com/actions/starter-workflows/blob/main/ci/dotnet.yml)
 - [Understanding workflow path filters](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestpaths)
 - [dotnet commands](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet#dotnet-commands)
 - [GitHub Actions for Azure](https://github.com/Azure/actions)
