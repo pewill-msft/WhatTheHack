@@ -1,0 +1,74 @@
+name: Build + push
+
+on:
+   workflow_dispatch:
+    
+   push:
+     branches: [ "main" ]
+     paths: 
+     - Application/**
+ 
+   pull_request:
+     branches: [ "main" ]
+     paths: 
+     - Application/**
+
+env:
+  registryName: duckdevopsreg.azurecr.io
+  repositoryName: wth/dotnetcoreapp
+  dockerfilePath: ./Application/src/RazorPagesTestSample
+  tag: ${{github.run_number}}
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore ./Application/src/RazorPagesTestSample/RazorPagesTestSample.csproj
+    - name: Build
+      run: dotnet build ./Application/src/RazorPagesTestSample/RazorPagesTestSample.csproj --no-restore
+    - name: Test
+      run: dotnet test ./Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.csproj --no-build --verbosity normal
+    - uses: actions/github-script@0.9.0
+      if: failure()
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          let body = "${{ env.build_name }} Worflow Failure \n Build Number: ${{ github.run_number }} \n Build Log: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} \n SHA: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }}) \n";
+          github.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: "${{ env.build_name }} Workflow ${{ github.run_number }} Failed! ",
+            body: body
+          });
+  
+  docker-build-and-push:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Azure Container Registry Login
+        uses: Azure/docker-login@v1
+        with:
+          # Container registry username
+          username: ${{ secrets.ACR_USERNAME }}
+          # Container registry password
+          password: ${{ secrets.ACR_PASSWORD }}
+          # Container registry server url
+          login-server: ${{ env.registryName }}
+
+      - name: Docker build
+        run: docker build -t $registryName/$repositoryName:$tag --build-arg build_version=$tag $dockerfilePath
+
+      - name: Docker Push
+        run: docker push $registryName/$repositoryName:$tag
