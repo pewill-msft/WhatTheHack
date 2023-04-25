@@ -1,4 +1,3 @@
-
 param location string = 'westeurope'
 param prefix string = 'duck'
 
@@ -16,10 +15,47 @@ resource webApp 'Microsoft.Web/sites@2022-09-01' = {
   location: location
   tags: {
     'hidden-related:/subscriptions/${subscription().subscriptionId}/resourcegroups/${resourceGroup().name}/providers/Microsoft.Web/serverfarms/${hostingPlanName}': 'empty'
+    'hidden-link:/app-insights-resource-id': appInsights.id
   }
   properties: {
 
     siteConfig: {
+
+      appSettings: [
+        {
+          name: 'DOCKER_REGISTRY_SERVER_URL'
+          value: 'https://${registry.properties.loginServer}'
+        }
+        {
+          name: 'DOCKER_REGISTRY_SERVER_USERNAME'
+          value: listCredentials('Microsoft.ContainerRegistry/registries/${registryName}', '2017-10-01').username
+        }
+        {
+          name: 'DOCKER_REGISTRY_SERVER_PASSWORD'
+          value: listCredentials('Microsoft.ContainerRegistry/registries/${registryName}', '2017-10-01').passwords[0].value
+        }
+        {
+          name: 'WEBSITES_ENABLE_APP_SERVICE_STORAGE'
+          value: 'false'
+        }
+        {
+          name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
+          value: appInsights.properties.InstrumentationKey
+        }
+        {
+          name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
+          value: appInsights.properties.ConnectionString
+        }
+        {
+          name: 'ApplicationInsightsAgent_EXTENSION_VERSION'
+          value: '~3'
+        }
+        {
+          name: 'DiagnosticServices_EXTENSION_VERSION'
+          value: '~3'
+        }
+      ]
+
       appCommandLine: startupCommand
       linuxFxVersion: 'DOCKER|${registry.properties.loginServer}/${imageName}'
 
@@ -52,29 +88,11 @@ resource hostingPlan 'Microsoft.Web/serverfarms@2022-09-01' = {
     reserved: true
   }
 }
-resource appServiceLogging 'Microsoft.Web/sites/config@2020-06-01' = {
-  parent: webApp
-  name: 'appsettings'
-  properties: {
-    APPINSIGHTS_INSTRUMENTATIONKEY: appInsights.properties.InstrumentationKey
-    APPLICATIONINSIGHTS_CONNECTION_STRING: appInsights.properties.ConnectionString
-    ApplicationInsightsAgent_EXTENSION_VERSION: '~3'
-    DiagnosticServices_EXTENSION_VERSION: '~3'
-    DOCKER_REGISTRY_SERVER_URL: 'https://${registry.properties.loginServer}'
-    DOCKER_REGISTRY_SERVER_USERNAME: listCredentials('Microsoft.ContainerRegistry/registries/${registryName}', '2017-10-01').username
-    DOCKER_REGISTRY_SERVER_PASSWORD: listCredentials('Microsoft.ContainerRegistry/registries/${registryName}', '2017-10-01').passwords[0].value
-    WEBSITES_ENABLE_APP_SERVICE_STORAGE: 'false'
-
-  }
-}
 
 resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: appInsightsName
   kind: 'web'
   location: location
-  tags: {
-    'hidden-link:${webApp.id}': 'Resource'
-  }
   properties: {
     Application_Type: 'web'
   }
