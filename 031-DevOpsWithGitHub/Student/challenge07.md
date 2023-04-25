@@ -20,7 +20,7 @@ The following image illustrates the areas covered in this challenge
 
 1. Create a branch protection rule which prevents developers from commiting changes to the main branch in the repository.
 
-2. Create a feature branch, make a small change to the code (i.e.,`/Application/aspnet-core-dotnet-core/Views/Home/Index.cshtml`), and sync this branch with the GitHub repository.
+2. Create a feature branch, make a small change to the code (i.e.,`/Application/src/RazorPagesTestSample/Pages/Index.cshtml`), and sync this branch with the GitHub repository.
 
 3. Define a code owner for the `/Application` directory. Your branch policy should require a review from the code owner.
 
@@ -30,7 +30,7 @@ The following image illustrates the areas covered in this challenge
 
 - You have a branch protection rule which prevents changes from being commited to your main branch.
 
-- Changes to the application (i.e.,`/Application/aspnet-core-dotnet-core/Views/Home/Index.cshtml`) are committed to a feature branch.
+- Changes to the application (i.e.,`/Application/src/RazorPagesTestSample/Pages/Index.cshtml`) are committed to a feature branch.
 
 - Before a pull request is completed:
     - A code owner must approve the changes ([hint](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/about-code-owners))
@@ -60,6 +60,8 @@ In this challenge, we focused on creating a feature branch directly off of the m
 
 If you would like to explore this flow, try to set up your repository for these 'phased deployments.' Begin by creating a development branch off of your main branch. On the development branch, repeat the flow from above. When you are ready to release, create and complete a pull request merging the development branch into the main branch. 
 
-**IMPORTANT**: Do not delete the development branch after completing the deployment. You will want to use this same branch to repeat the process for your next deployment. 
+> **Important**<br>
+> Do not delete the development branch after completing the deployment. You will want to use this same branch to repeat the process for your next deployment. 
+>
 
 [< Previous](challenge06.md) - [Home](../readme.md) - [Next >](challenge08.md)

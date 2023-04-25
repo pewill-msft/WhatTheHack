@@ -29,14 +29,22 @@ The following image illustrates the areas covered in this challenge
 
 1. You should understand the importance of monitoring and some of the basic features offered by Application Insights.
 
-    - **NOTE**: We are just scratching the surface of what is offered in Azure Monitoring, if you are interested in learning more there is a full What the Hack focused on [Azure Monitoring](https://github.com/microsoft/WhatTheHack/tree/master/007-AzureMonitoring).
+> **NOTE**<br> 
+> We are just scratching the surface of what is offered in Azure Monitoring, if you are interested in learning more there is a full What the Hack focused on [Azure Monitoring](https://github.com/microsoft/WhatTheHack/tree/master/007-AzureMonitoring).
+>
 
 ### Advanced Challenges (optional)
 
 1. Using the failures feature of Application Insights find an exception that happened on your site. Using the link you created in the last step, open a work item to resolve that exception. 
 
-    - **NOTE**: If your site doesn’t have any exceptions, you can create one easily by trying to go to a page that doesn’t exist.
+> **NOTE**<br> 
+> If your site doesn’t have any exceptions, you can create one easily by trying to go to a page that doesn’t exist.
+>
 
-    - **NOTE**: It takes a min or two after an event happens for it to make its way to Application Insights and for it to be indexed so you can see it in the portal.
+
+> **NOTE**<br> 
+> It takes a min or two after an event happens for it to make its way to Application Insights and for it to be indexed so you can see it in the portal.
+>
+
 
 [< Previous](challenge07.md) - [Home](../readme.md) - [Next >](challenge09.md)
