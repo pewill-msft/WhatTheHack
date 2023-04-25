@@ -1,3 +1,4 @@
+
 param location string = 'westeurope'
 param prefix string = 'duck'
 
@@ -10,7 +11,6 @@ param imageName string = '${prefix}devopsimage'
 param registrySku string = 'Standard'
 param startupCommand string = ''
 
-
 resource webApp 'Microsoft.Web/sites@2022-09-01' = {
   name: webAppName
   location: location
@@ -18,40 +18,14 @@ resource webApp 'Microsoft.Web/sites@2022-09-01' = {
     'hidden-related:/subscriptions/${subscription().subscriptionId}/resourcegroups/${resourceGroup().name}/providers/Microsoft.Web/serverfarms/${hostingPlanName}': 'empty'
   }
   properties: {
-    name: webAppName
+
     siteConfig: {
-      appSettings: [
-        {
-          name: 'DOCKER_REGISTRY_SERVER_URL'
-          value: 'https://${registry.properties.loginServer}'
-        }
-        {
-          name: 'DOCKER_REGISTRY_SERVER_USERNAME'
-          value: listCredentials('Microsoft.ContainerRegistry/registries/${registryName}', '2017-10-01').username
-        }
-        {
-          name: 'DOCKER_REGISTRY_SERVER_PASSWORD'
-          value: listCredentials('Microsoft.ContainerRegistry/registries/${registryName}', '2017-10-01').passwords[0].value
-        }
-        {
-          name: 'WEBSITES_ENABLE_APP_SERVICE_STORAGE'
-          value: 'false'
-        }
-        {
-          name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
-          value: reference(appInsights.id, '2015-05-01').InstrumentationKey
-        }
-      ]
       appCommandLine: startupCommand
       linuxFxVersion: 'DOCKER|${registry.properties.loginServer}/${imageName}'
-    }
-    serverFarmId: '/subscriptions/${subscription().subscriptionId}/resourcegroups/${resourceGroup().name}/providers/Microsoft.Web/serverfarms/${hostingPlanName}'
-    hostingEnvironment: ''
-  }
-  dependsOn: [
-    hostingPlan
 
-  ]
+    }
+    serverFarmId: hostingPlan.id
+  }
 }
 
 resource registry 'Microsoft.ContainerRegistry/registries@2022-12-01' = {
@@ -61,7 +35,7 @@ resource registry 'Microsoft.ContainerRegistry/registries@2022-12-01' = {
   name: registryName
   location: location
   properties: {
-    adminUserEnabled: 'true'
+    adminUserEnabled: true
   }
 }
 
@@ -72,24 +46,36 @@ resource hostingPlan 'Microsoft.Web/serverfarms@2022-09-01' = {
   }
   kind: 'linux'
   name: hostingPlanName
+
   location: location
   properties: {
-    name: hostingPlanName
-    workerSizeId: '0'
     reserved: true
-    numberOfWorkers: '1'
-    hostingEnvironment: ''
+  }
+}
+resource appServiceLogging 'Microsoft.Web/sites/config@2020-06-01' = {
+  parent: webApp
+  name: 'appsettings'
+  properties: {
+    APPINSIGHTS_INSTRUMENTATIONKEY: appInsights.properties.InstrumentationKey
+    APPLICATIONINSIGHTS_CONNECTION_STRING: appInsights.properties.ConnectionString
+    ApplicationInsightsAgent_EXTENSION_VERSION: '~3'
+    DiagnosticServices_EXTENSION_VERSION: '~3'
+    DOCKER_REGISTRY_SERVER_URL: 'https://${registry.properties.loginServer}'
+    DOCKER_REGISTRY_SERVER_USERNAME: listCredentials('Microsoft.ContainerRegistry/registries/${registryName}', '2017-10-01').username
+    DOCKER_REGISTRY_SERVER_PASSWORD: listCredentials('Microsoft.ContainerRegistry/registries/${registryName}', '2017-10-01').passwords[0].value
+    WEBSITES_ENABLE_APP_SERVICE_STORAGE: 'false'
+
   }
 }
 
 resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: appInsightsName
+  kind: 'web'
   location: location
   tags: {
-    'hidden-link:${resourceGroup().id}/providers/Microsoft.Web/sites/${webAppName}': 'Resource'
+    'hidden-link:${webApp.id}': 'Resource'
   }
   properties: {
-    applicationId: webAppName
-    Request_Source: 'AzureTfsExtensionAzureProject'
+    Application_Type: 'web'
   }
 }

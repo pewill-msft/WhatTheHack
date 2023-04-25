@@ -31,5 +31,6 @@ module azresources 'container-webapp-template.bicep' = {
    imageName: imageName
    registrySku: registrySku
    startupCommand: startupCommand
+   prefix: prefix
   }
 }
