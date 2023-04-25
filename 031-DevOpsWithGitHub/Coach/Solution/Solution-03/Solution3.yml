@@ -4,7 +4,7 @@ on:
 env:
   targetEnv: Dev
 
-name: Azure ARM
+name: Azure Bicep Deploy
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -17,10 +17,12 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # Deploy ARM template
-    - name: Run ARM deploy
+      # Deploy Bicep template
+    - name: Run Bicep deploy
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        scope: subscription
+        region: westeurope
         template: ./Bicep-Templates/main.bicep
-        parameters: webAppName=WTHApp-${{ env.targetEnv }}
+        parameters: webAppName=wthapp-${{ env.targetEnv }}

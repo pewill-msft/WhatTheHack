@@ -1,62 +1,63 @@
-name: .NET CI
+name: Build + push
+
+on:
+   workflow_dispatch:
+    
+   push:
+     branches: [ "main" ]
+     paths: 
+     - Application/**
+ 
+   pull_request:
+     branches: [ "main" ]
+     paths: 
+     - Application/**
 
 env:
-  registryName: devopsregwth31.azurecr.io
+  registryName: duckdevopsreg.azurecr.io
   repositoryName: wth/dotnetcoreapp
-  dockerFolderPath: ./Application/src/RazorPagesTestSample
+  dockerfilePath: ./Application/src/RazorPagesTestSample
   tag: ${{github.run_number}}
-  
-on:
-  push:
-    branches: [ main ]
-    paths: Application/*
-  pull_request:
-    branches: [ main ]
-    paths: Application/*
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 3.1
-    
+        dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore ./Application/src/RazorPagesTestSample/RazorPagesTestSample.csproj
     - name: Build
-      run: dotnet build --no-restore ./Application/src/RazorPagesTestSample/RazorPagesTestSample.csproj
+      run: dotnet build ./Application/src/RazorPagesTestSample/RazorPagesTestSample.csproj --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal ./Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.csproj
-      
-  dockerBuildPush:
-    
+      run: dotnet test ./Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.csproj --no-build --verbosity normal
+  
+  docker-build-and-push:
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Docker Login
-      # You may pin to the exact commit or the version.
-      # uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
-      uses: docker/login-action@v1.9.0
-      with:
-        # Server address of Docker registry. If not set then will default to Docker Hub
-        registry: ${{ env.registryName }}
-        # Username used to log against the Docker registry
-        username: ${{ secrets.ACR_USERNAME }}
-        # Password or personal access token used to log against the Docker registry
-        password: ${{ secrets.ACR_PASSWORD }}
-        # Log out from the Docker registry at the end of a job
-        logout: true
-        
-    - name: Docker Build
-      run: docker build -t $registryName/$repositoryName:$tag --build-arg build_version=$tag $dockerFolderPath
-      
-    - name: Docker Push
-      run: docker push $registryName/$repositoryName:$tag
+      - uses: actions/checkout@v2
+
+      - name: Azure Container Registry Login
+        uses: Azure/docker-login@v1
+        with:
+          # Container registry username
+          username: ${{ secrets.ACR_USERNAME }}
+          # Container registry password
+          password: ${{ secrets.ACR_PASSWORD }}
+          # Container registry server url
+          login-server: ${{ env.registryName }}
+
+      - name: Docker build
+        run: docker build -t $registryName/$repositoryName:$tag --build-arg build_version=$tag $dockerfilePath
+
+      - name: Docker Push
+        run: docker push $registryName/$repositoryName:$tag
+ 

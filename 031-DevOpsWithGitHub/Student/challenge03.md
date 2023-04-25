@@ -23,9 +23,9 @@ The following image illustrates the areas covered in this challenge
 We will use GitHub Actions to automate the deployment of our Azure infrastructure. For our application, we will deploy 3 environments: `dev`, `test` and `prod`. Each environment will have its own Web App, however all of our environments will share a single Resource Group, App Service Plan, Application Insights instance, and Azure Container Registry. NOTE: in real deployments, you will likely not share all of these resources.
 
 
-1. Review the Bicep template. Notice how it defines a number of parameters and uses them to create the Resource Group, App Service Plan, Web App, Application Insights, and Azure Container Registry. 
+1. Review the Bicep templates. Notice how it defines a number of parameters and uses them to create the Resource Group, App Service Plan, Web App, Application Insights, and Azure Container Registry. 
 
-2. Update the parameters section of the Bicep template, replacing `<prefix>` with a unique lowercase 5 letter name. The resulting name needs to be globally unique to correctly provision resources. Notice the `webAppName` parameter on line #3 - you will override this placeholder value later when you call the ARM template.
+2. Update the parameters section of the main Bicep template, replacing `<prefix>` value with a unique lowercase 5 letter name. The resulting name needs to be globally unique to correctly provision resources. Notice the `webAppName` parameter on line #5 - you will override this placeholder value later when you call the Bicep template.
 
 3. Create a GitHub workflow (`deploy.yml`) that runs manually (*not* triggered by a push or pull request).
 
