@@ -38,7 +38,7 @@ We will use GitHub Actions to automate the deployment of our Azure infrastructur
     - Use the "Deploy Azure Resource Manager (ARM) Template" action to call your Bicep template in your repo. 
     
 > **Note**<br> 
-> The `main` Bicep template must be deployed with subscription scope [hint](https://github.com/Azure/arm-deploy#inputs).  
+> The `main` Bicep template must be deployed with subscription scope ([hint](https://github.com/Azure/arm-deploy#inputs)).  
 >
 
 
@@ -78,6 +78,8 @@ Instead of changing the `targetEnv` variable for each environment that we want t
 - Delete the `targetEnv` environment variable you created earlier.
 - Configure your workflow to collect the environment name as a [workflow input](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_callinputs) and use that value to override the `webAppName` parameter when calling the ARM template.
 
-**NOTE**: If you are interested in learning more about Infrastructure as Code, there are [multiple](https://github.com/microsoft/WhatTheHack) What the Hacks that cover it in greater depth.
+> **Note**<br>
+> If you are interested in learning more about Infrastructure as Code, there are [multiple](https://github.com/microsoft/WhatTheHack) What the Hacks that cover it in greater depth.
+>
 
 [< Previous](challenge02.md) - [Home](../readme.md) - [Next >](challenge04.md)
