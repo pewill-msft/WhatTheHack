@@ -27,14 +27,14 @@ In this challenge, you will build and push a docker image to ACR:
 
 1. At the top of your workflow file, create 4 environment variables:
 
-    - `registryName` - the full server address of your ACR instance. Set this to "`registryName`.azurecr.io" - replacing `registryName` with the `<prefix>devopsreg` value in your ARM template file (line #26). 
+    - `registryName` - the full server address of your ACR instance. Set this to "`registryName`.azurecr.io" - replacing `registryName` with the `<prefix>devopsreg` value as it is defined in your Bicep file. 
     - `repositoryName` - The repository to target in the registry. Set this to "`wth/dotnetcoreapp`".
     - `dockerFolderPath` - The path to the folder that contains the Dockerfile - a critical parameter. You will need to point to the folder: `Application/src/RazorPagesTestSample`.
     - `tag` - This needs to be a unique value each time, as this is used to version the images in the repository. GitHub makes [environment variables](https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions#github-context) available that helps with this. Set `tag` to the [github.run_number](https://www.bing.com/search?q=%24%7B%7Bgithub.run_number%7D%7D&form=QBLH&sp=-1&pq=%24%7B%7Bgithub.run_number%7D%7D&sc=0-22&qs=n&sk=&cvid=D84DA66323DC4E14BD794F90FCFD90D3) environment variable.
 
-2. Go to the Azure Portal and get the (1) username and (2) password and (3) login server to your ACR instance and save as GitHub secrets (`ACR_USERNAME`, `ACR_PASSWORD`, `ACR_LOGIN_SERVER`).
+2. Go to the Azure Portal and get the (1) username and (2) password from your ACR instance and save as GitHub secrets (`ACR_USERNAME`, `ACR_PASSWORD`).
 
-3. Add a second **job** to your existing .NET Core workflow. 
+3. Add a second **job** to your existing .NET workflow. 
 
 4. Make sure the first step in your second job includes `- uses: actions/checkout@v2`
 

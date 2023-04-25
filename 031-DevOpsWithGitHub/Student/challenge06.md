@@ -28,13 +28,13 @@ Extend the workflow you created in Challenge #4 to:
       - `app-name` - the name of the wep app instance to target
       - `images` - the path to the image you pushed to ACR
 
-2. Make a small change to your application  (i.e.,`/Application/aspnet-core-dotnet-core/Views/Home/Index.cshtml`), commit, push, monitor the workflow and see if the change shows up on the dev instance of the website.
+2. Make a small change to your application  (i.e.,`/Application/src/RazorPagesTestSample/Pages/Index.cshtml`), commit, push, monitor the workflow and see if the change shows up on the dev instance of the website.
 
 3. Configure your workflow to deploy to your `test` and `prod` environments and after a manual approval for *each* environment.
 
 ### Success Criteria
 
-1. A small change to `/Application/aspnet-core-dotnet-core/Views/Home/Index.cshtml` automatically shows up on the website running in the `dev` environment (i.e., `<prefix>devops-dev`.azurewebsites.net).
+1. A small change to `/Application/src/RazorPagesTestSample/Pages/Index.cshtml` automatically shows up on the website running in the `dev` environment (i.e., `<prefix>devops-dev`.azurewebsites.net).
 2. Manual approval is required to deploy to the `test` and `prod` environments.
 
 ### Learning Resources
