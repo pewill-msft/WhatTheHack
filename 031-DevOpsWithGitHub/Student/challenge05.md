@@ -63,9 +63,5 @@ In this challenge, you will build and push a docker image to ACR:
 - If you are having trouble finding a starting point, try clicking over to the 'Actions' tab of your GitHub repository. 
 - Take advantage of the prebuilt workflow templates if you find one that might work! 
 
-### Advanced Challenges (optional)
-
-1. In this challenge, if the workflow fails, an email is set to the repo owner. Sometimes, you may want to log or create a GitHub issue when the workflow fails.
-    - Add a step to your workflow to create a GitHub issue when there is a failure.
 
 [< Previous](challenge04.md) - [Home](../readme.md) - [Next >](challenge06.md)
