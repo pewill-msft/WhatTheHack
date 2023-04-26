@@ -61,7 +61,11 @@ At this point, any changes pushed to the `/Application` folder automatically tri
 
 ### Advanced Challenges (optional)
 
-1. In this challenge, if the workflow fails, an email is set to the repo owner. Sometimes, you may want to log or create a GitHub issue when the workflow fails.
+1. In this challenge, if the workflow fails, an email is sent to the repo owner. Sometimes, you may want to log or create a GitHub issue when the workflow fails.
     - Add a step to your workflow to create a GitHub issue when there is a failure.
+
+> **Note**<br>
+> The GitHub action might not have permission to create and issue in your repository by default. See [Permissions for the GITHUB_TOKEN](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token) for details.
+>
 
 [< Previous](challenge03.md) - [Home](../readme.md) - [Next >](challenge05.md)
