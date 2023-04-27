@@ -6,7 +6,7 @@
 
 ### Introduction
 
-Now that we have some code, we need an environment to deploy it to! The term Infrastructure as Code (IaC) refers to using templates (code) to repeatedly and consistently create the dev, test, prod (infrastructure) environments. We can automate the process of deploying the Azure services we need with an Azure Resource Manager (ARM) template. 
+Now that we have some code, we need an environment to deploy it to! The term Infrastructure as Code (IaC) refers to using templates (code) to repeatedly and consistently create the dev, test, prod (infrastructure) environments. We can automate the process of deploying the Azure services we need with a Bicep template. There are also other declarative IaC template options like Azure Resource Manager (ARM) or Terraform.  
 
 Review the following articles:
 
