@@ -70,6 +70,7 @@ You should see all three environments in Azure.
 - [GitHub Action for Azure Resource Manager (ARM) deployment](https://github.com/Azure/arm-deploy)
 - [Deploy Azure Resource Manager templates by using GitHub Actions](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-github-actions)
 - [Parameters in Bicep](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-cli#parameters)
+- [Use GitHub Actions to connect to Azure](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows)
 
 
 ### Advanced Challenges (optional)
