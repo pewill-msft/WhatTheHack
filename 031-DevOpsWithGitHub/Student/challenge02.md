@@ -14,7 +14,7 @@ Now that we have a basic understanding of version control and Git, lets get some
 
 1. Begin by cloning the GitHub repository you created in the [initial challenge](challenge00.md) to your local computer ([hint](https://help.github.com/en/articles/cloning-a-repository)).
 
-2. Next, obtain the code (sample application and Bicep template) from the Resource files provided by your coach. You can find theme here [Starter files](./Resources/GitHub-DevOps-starter-files.zip).
+2. Next, obtain the code (sample application and Bicep template) from the Resource files provided by your coach. You can find them here [Starter files](./Resources/GitHub-DevOps-starter-files.zip).
 
 3. Finally, commit the files to your GitHub repository using your preferred Git client.
 
